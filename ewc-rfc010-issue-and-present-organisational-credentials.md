@@ -1,4 +1,4 @@
-# EWC RFC010: Issue and Present Organisational Credentials - v0.1
+# Issue and Present Organisational Credentials
 
 **Authors:** 
 * Mr Ronald Koenig (Spherity, Germany)
@@ -22,8 +22,7 @@ We also describe the issuance process of these three types of credentials and ho
 
 # 2	Motivation
 
-The EWC LSP handles a variety of credentials that are exchanged between different types of organisations.
-The goal of this RFC is to provide a standard protocol for issuing and presenting Organisational Credentials.
+The goal of this document is to provide a standard protocol for issuing and presenting Organisational Credentials.
 Depending on the use case, organisations need certain information about their business partners, such as authorised signatories, tax numbers or ultimate beneficial owners.
 This data needs to be validated and kept up to date.
 To simplify the management of this master data, we propose the use of Organisational Credentials, for example issued by an Attestation Provider asserting data from an authentic source such as the relevant commercial register.
@@ -41,9 +40,6 @@ Server-based Organisational Wallets are expected to be in continuous operation.
 In order to process requests automatically, we propose the use of the DIDComm protocol for the issuance and presentation of verifiable credentials.
 The DIDComm protocol provides persistent secure connections that allow messages to be exchanged without the need to re-establish connections.
 
-The defined protocols and standards serve as a foundation for enabling interoperability between organisations throughout the EWC ecosystem.
-This RFC assumes that users are familiar with the chosen EWC protocols and standards, and can reference the original specifications when required. 
-
 # 3 Trust Model
 
 ## 3.1 DIDs
@@ -53,20 +49,20 @@ Each legal person and natural person is identified by a unique identifier.
 The use of Decentralised Identifiers (DIDs) permits the implementation of self-sovereign digital identities.
 Each DID is associated with a DID Document, which may contain public keys, service endpoints, and other metadata required for interactions.
 DIDs can be used across various platforms and services, promoting interoperability and user autonomy in the digital identity landscape.
-In the context of this RFC, the a natural person's DID is used only in the context of the organisation and is managed using the Organisational Wallet.
+In the context of this document, the a natural person's DID is used only in the context of the organisation and is managed using the Organisational Wallet.
 
 DID Documents are resolved using a DID method.
-While the workflows presented in this RFC are independent of the DID method used, we use two types of DID methods as examples: `DID:key` and `DID:peer`.
+While the presented workflows are independent of the DID method used, we use two types of DID methods as examples: `DID:key` and `DID:peer`.
 Legal and natural persons are identified using the `DID:key` method.
 The `DID:key` method allows for the creation of DIDs directly from cryptographic key pairs without relying on a trust infrastructure.
-Therefore, this RFC is independent of the choice of a concrete trust infrastructure and can be adapted flexibly.
+Therefore, the presented workflows are independent of the choice of a concrete trust infrastructure and can be adapted flexibly.
 The `DID:peer` method is used to establish secure bilateral communication channels for requesting and presenting credentials.
 The method encodes an ephemeral key that is bound to a specific DIDComm connection.
 
 ## 3.2 Trust Lists
 
 In order to verify verifiable credentials, the Relying Party needs a trust relationship with the Attestation Provider.
-This RFC is independent of the trust infrastructure providing the trust anchor.
+The presented workflows are independent of the trust infrastructure providing the trust anchor.
 It is expected that a trust infrastructure is available to provide trust lists .
 Trust lists provide the DIDs of trusted Attestation Providers and Relying Parties.
 As a result, the wallet can verify the authenticity of the Relying Party before presenting a verifiable credential, and the Relying Party can verify the authenticity of the Attestation Provider upon presentation of the credential.
@@ -74,7 +70,7 @@ As a result, the wallet can verify the authenticity of the Relying Party before 
 ## 3.3 Credentials and Holder Binding
 
 Organisational Credentials are expected to have a high degree of complexity and interdependency.
-The W3C Credential Format [2] uses JSON-LD to express complex semantics in a concise but specific way and is one of the credential formats suggested within the ARF [3, [Appendix 2.3.12](https://github.com/eu-digital-identity-wallet/eudi-doc-architecture-and-reference-framework/blob/0744496a81fcdf98343893d64be471a42dfedfba/docs/annexes/annex-2/annex-2-high-level-requirements.md#a2312-topic-12---attestation-rulebooks)] and agreed upon within the EWC [6].
+The W3C Credential Format [2] uses JSON-LD to express complex semantics in a concise but specific way and is one of the credential formats suggested within the ARF [3, [Appendix 2.3.12](https://github.com/eu-digital-identity-wallet/eudi-doc-architecture-and-reference-framework/blob/0744496a81fcdf98343893d64be471a42dfedfba/docs/annexes/annex-2/annex-2-high-level-requirements.md#a2312-topic-12---attestation-rulebooks)].
 JSON-LD enables semantic interoperability by using schemas agreed upon by the participants.
 As a result, existing vocabularies such as the SEMIC Core Vocabularies [5] can be reused to ensure cross-border interoperability.
 In addition, W3C Verifiable Credentials provide cryptographic agility so that we can take advantage of established signature schemes such as ECDSA-SD, while retaining the flexibility to use modern schemes such as BBS and Post Quantum Crypto (PCQ).
@@ -1687,4 +1683,3 @@ sequenceDiagram
 3. European Commission (2024), The European Digital Identity Wallet Architecture and Reference Framework (2024-04, v1.4.0)  [Online]. Available at: [https://github.com/eu-digital-identity-wallet/eudi-doc-architecture-and-reference-framework/tree/v1.4.0](https://github.com/eu-digital-identity-wallet/eudi-doc-architecture-and-reference-framework/tree/v1.4.0) (Accessed: Aug 9, 2024)
 4. Decentralized Identity Foundation (DIF) (2023), Credential Manifest, Available at: https://identity.foundation/credential-manifest (Accessed at: July 15, 2024)
 5. European Commission (2024), ISA² - Interoperability solutions for public administrations, businesses and citizens - Core Vocabularies, Available at: https://ec.europa.eu/isa2/solutions/core-vocabularies_en/ (Accessed: July 31, 2024)
-6. EU Digital Identity Wallet Consortium (EWC) (2024), EWC Supported Formats, Available at: https://github.com/EWC-consortium/eudi-wallet-rfcs/blob/main/ewc-supported-formats.csv (Accessed at: June 1, 2024)
